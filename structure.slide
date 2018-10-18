@@ -70,3 +70,49 @@ These tables have columns id, age, and deleted_at
 - users have many sessions
 
 * Insert data into a table
+
+.link https://www.postgresql.org/docs/current/static/sql-insert.html Insert information into your tables
+
+.code -edit code/insert.sql
+
+Don't insert integer values for serially incremented fields, you'll have a bad time
+
+* Select data from a table
+
+.code -edit code/select.sql
+
+You can select individual fields, or all fields
+
+* WHERE, select specific data
+
+.code -edit code/where.sql
+
+Use a [[https://www.postgresql.org/docs/9.5/static/sql-select.html#SQL-WHERE][WHERE]] clause to specify only certain records.
+
+There are different conditionals you can use, '=' for equality, '<' and '>' for number types
+
+There are even [[https://www.postgresql.org/docs/current/static/functions-matching.html][pattern matching conditionals]]
+
+* DELETE, destroy specific data
+
+.code -edit code/delete.sql
+
+Safe practice is to always SELECT what you want to destroy first, then re-write the query with DELETE
+
+* UPDATE, change data
+
+.code -edit code/update.sql
+
+Updates often target specific records by their id
+
+* JOINS
+
+.code -edit code/joins.sql
+
+Joins _across_ tables will attach data based on how you declare the join relationship. Because we join the sessions table to the users table it only yields records for users that have sessions.
+
+* GROUP BY
+
+.code -edit code/group_by.sql
+
+GROUP BY is used to aggregate data. If you want to use [[https://www.postgresql.org/docs/current/static/functions-aggregate.html][aggregate functions]] you will often need to specify an attribute your aggregates around
