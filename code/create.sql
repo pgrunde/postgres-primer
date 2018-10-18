@@ -1,0 +1,7 @@
+CREATE TABLE "users" (
+  "id" SERIAL NOT NULL,
+  "email" VARCHAR(256) NOT NULL UNIQUE,
+  "name" VARCHAR(256) NOT NULL,
+  "address" VARCHAR(256) NOT NULL,
+  PRIMARY KEY ("id")
+);

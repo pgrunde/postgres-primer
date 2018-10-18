@@ -1,0 +1,72 @@
+PostgreSQL
+Open source object-relational database
+
+* History
+
+Researchers needed a way to store and retrieve tables of related information.
+
+- In 1986 the POSTGRES project was started by the University of California at Berkeley with backing from DARPA, the Army Research Office, and the National Science Foundation.
+
+- In 1993 the user community of POSTGRES doubled and in 1994 a SQL language interpreter was added under the name Postgres95. The program `psql` was added for interactive queries.
+
+- "By 1996, it became clear that the name 'Postgres95' would not stand the test of time." PostgreSQL was born, set with a versioning number of 6.0 to be in sequence with the original POSTGRES project.
+
+* Google Sheets
+
+.link https://docs.google.com/spreadsheets/d/1HPwntL-T_1JqMDNUn6rHyx2nTjmzpHlGsOPQsh5HF6A/edit?usp=sharing Solving a problem with the tools you know
+.image slidecontent/sheet1.png
+
+* Install
+
+.link https://postgresapp.com/ Menu Bar App
+
+.link https://formulae.brew.sh/formula/postgresql Homebrew
+
+.link https://www.postgresql.org/download/macosx/ All Options
+
+* psql
+
+The `psql` command opens an interactive terminal for creating and interacting with databases their data tables.
+
+.link https://www.postgresql.org/docs/10/static/tutorial-createdb.html Installations of postgres include a database creation command line tool 
+You can use it like so:
+.code code/createdb.sh
+
+* Managing databases
+
+After using `psql` to access your interactive SQL shell, you can view available databases
+.code code/list.sql
+Here we have two databases called scratch and unicorns-dev. 
+
+The other two template databases are the sources for the new copies made when you create databases- don't destroy them!
+
+* Connecting to databases
+
+.code code/connect_and_list.sql
+
+First we connect to a database with \c then list the tables with \d
+
+We have two relations, foo and foo_id_seq (a [[http://www.neilconway.org/docs/sequences/][sequence]])
+
+* Getting table details
+.code code/table_details.sql
+
+These tables have columns id, age, and deleted_at
+
+* Creating a data table
+
+.code -edit code/create.sql
+
+- The id column of this table will serially incremented after each insert and uses the sequence relation to keep track
+- The column names are defined with double quotes
+- After the name the [[https://www.postgresql.org/docs/10/static/datatype.html][type]] is defined
+- The primary key is stored in other tables when they _reference_ this one
+
+* Creating a table with a reference to another table
+.code -edit code/create_ref.sql
+
+- user_id is a [[https://www.postgresql.org/docs/current/static/ddl-constraints.html#DDL-CONSTRAINTS-FK][foreign key]]
+- foreign keys keep track of relationships between your data tables
+- users have many sessions
+
+* Insert data into a table
